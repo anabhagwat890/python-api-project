@@ -1,24 +1,24 @@
-name: Python API Tests
+name: Python API Tests                                      # 1. Name of the automation
 
-on: [push, pull_request]
+on: [push, pull_request]                                    # 2. The Trigger: "Run this every time I push code"
 
 jobs:
-  build:
-    runs-on: ubuntu-latest
+  build:                                                    # 3. The Job name
+    runs-on: ubuntu-latest                                  # 4. The "Robot's" OS (a clean Linux machine) 
 
     steps:
-    - uses: actions/checkout@v4
+    - uses: actions/checkout@v4                              # 5. Robot "downloads" your code from Git
     
     - name: Set up Python
       uses: actions/setup-python@v5
       with:
-        python-version: '3.10'
+        python-version: '3.10'                               # 6. Robot installs Python
 
     - name: Install dependencies
-      run: |
+      run: |                                                 # 7. Robot installs your project needs
         python -m pip install --upgrade pip
-        pip install -r requirements.txt
+        pip install -r requirements.txt            
 
     - name: Run Tests with Pytest
-      run: |
-        pytest --html=report.html --self-contained-html
+      run: |                                                  # 8. THE CORE: Robot runs your tests
+        pytest --html=report.html --self-contained-html         
